@@ -1,0 +1,21 @@
+const { Sequelize  }  = require("sequelize");
+require("dotenv").config();
+
+const myDatabase = new Sequelize (
+    process.env.DB_NAME,
+    process.env.DB_USER,
+    process.env.DB_PASSWORD,
+    {
+        
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
+        dialect: "mysql",
+        logging: false,
+    }
+)
+myDatabase.authenticate()
+    .then(() => console.log("✅ Sequelize connected to MySQL"))
+    .catch(err => console.error("❌ Sequelize connection error:", err));
+
+
+module.exports = myDatabase;
