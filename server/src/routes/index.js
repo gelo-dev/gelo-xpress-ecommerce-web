@@ -10,6 +10,7 @@ router.get('/users/:id' , userController.getUserById)
 
 
 router.post('/auth/register' , UserAuth.register)
+router.post('/auth/login' , UserAuth.login)
 
 // router.post('/register')
 
