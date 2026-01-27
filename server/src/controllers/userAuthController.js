@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
-const User = require('../models/usersModel')
+const User = require('../models/usersModel');
+const jwt = require("jsonwebtoken");
 
 exports.register = async(req,res)=>{
     try {
@@ -52,11 +53,31 @@ exports.login = async(req,res)=>{
 
         const userExist = await bcrypt.compare(password ,user.password);
         if(!userExist){
-            return res.status(401).json({message : "Invalid Password"});
+            return res.status(401).json({message : "Log-in Failed"});
         }
 
-        res.json({message : "Log-in Successully"});
+        const token = jwt.sign(
+            {
+                id : user.id,
+                role : user.role
+            },
+            process.env.JWT_SECRET,
+            {
+                expiresIn : process.env.JWT_EXPIRES
+            }
+        )
+
+        res.json({message : "Log-in Successully", token});
+       
     } catch (error) {
         res.status(500).json({error : error.message});
     }
 }
+
+exports.authUser = async (req,res) =>{
+    const user = await User.findByPk(req.user.id, {
+    attributes: { exclude: ["password"] }
+    });
+    res.json(user);
+}
+
