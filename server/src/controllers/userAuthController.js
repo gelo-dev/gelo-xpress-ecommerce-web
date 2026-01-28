@@ -25,12 +25,13 @@ exports.register = async(req,res)=>{
         const user = User.create({
             full_name,
             email,
-            password: hashedPassword
+            password: hashedPassword,
+            role: "user"
         });
 
 
         res.status(201).json({
-            message:"Useer Registered Successully",
+            message:"User Registered Successully",
             user
         })
         
@@ -63,7 +64,7 @@ exports.login = async(req,res)=>{
             },
             process.env.JWT_SECRET,
             {
-                expiresIn : process.env.JWT_EXPIRES
+                expiresIn : process.env.JWT_EXPIRES_IN
             }
         )
 
@@ -75,9 +76,16 @@ exports.login = async(req,res)=>{
 }
 
 exports.authUser = async (req,res) =>{
-    const user = await User.findByPk(req.user.id, {
-    attributes: { exclude: ["password"] }
-    });
-    res.json(user);
+    try {
+        const user = await User.findByPk(req.user.id, {
+            attributes: { exclude: ["password"] }
+        });
+            if (!user) {
+                return res.status(404).json({ message: "User not found" });
+            }
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ message: "Server error" });
+    }
 }
 
