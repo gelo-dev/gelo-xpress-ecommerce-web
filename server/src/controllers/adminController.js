@@ -1,8 +1,9 @@
 const bcrypt = require("bcrypt");
 const cloudinary = require("cloudinary");
-const streamifier = require("streamifier")
 const User = require("../models/usersModel");
 const Product = require("../models/productsModel")
+
+
 
 exports.createAdmin = async (req,res) => {
     try {
@@ -24,36 +25,47 @@ exports.createAdmin = async (req,res) => {
 }
 
 
-exports.uploadProduct = async (req,res) => {
-        try {
-            if (!req.file) {
+exports.uploadProduct = async (req, res) => {
+    try {
+        if (!req.file) 
             return res.status(400).json({ message: "No file provided" });
-            }
+        
+            const fileBase64 = req.file.buffer.toString("base64");
+            const mimeType = req.file.mimetype; // e.g., image/png
+            const dataUri = `data:${mimeType};base64,${fileBase64}`;
 
-            const uploadStream = cloudinary.uploader.upload_stream(
-            { folder: "products" },
+        
+        const cloudResult = await cloudinary.uploader.upload(dataUri, {
+            folder: "products",
+        });
 
-            async (error, result) => {
-                if (error) {
-                return res.status(500).json({ message: error.message });
-                }
+        console.log("Cloudinary uploaded:", cloudResult.secure_url);
+        console.log(req.file.buffer);
+        
 
-            const newProduct = await Product.create({
-                name: req.body.name,
-                price: req.body.price,
-                description: req.body.description,
-                stock: req.body.stock,
-                image: result.secure_url,
-                public_iD: result.public_id
-            });
+        const name = req.body.name?.trim() || "Unnamed Product";
+        const description = req.body.description?.trim() || "";
+        const price = req.body.price ? parseFloat(req.body.price) : 0;
+        const stock = req.body.stock ? Math.floor(Number(req.body.stock)) : 0;
 
-            res.json({message: "Product created with image",product: newProduct});
-        }
-        );
+        const product = await Product.create({
+            name,
+            price,
+            description,
+            stock,
+            image: cloudResult.secure_url,
+            public_id: cloudResult.public_id,
+        });
 
-        streamifier.createReadStream(req.file.buffer).pipe(uploadStream);
-
-    } catch (error) {
-        res.status(500).json({ message: error.message });
+        return res.status(201).json({
+            message: "Product created successfully",
+            product,
+        });
+    } catch (err) {
+        console.error("ERROR:", err, err.errors);
+        return res.status(500).json({ message: "Server error", error: err.message });
     }
-}
+};
+
+
+

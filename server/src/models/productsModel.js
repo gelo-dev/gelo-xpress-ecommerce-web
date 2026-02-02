@@ -34,11 +34,17 @@ const Product = myDatabase.define(
             type: DataTypes.STRING(255),
             allowNull: true,
         },
+        
+        public_id: {
+            type: DataTypes.STRING(255),
+            allowNull: true,
+        },
 
         created_at: {
             type: DataTypes.DATE,
             defaultValue: DataTypes.NOW,
         },
+
     },
     {
         tableName: "products",   // matches your SQL table
