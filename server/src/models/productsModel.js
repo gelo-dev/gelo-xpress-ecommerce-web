@@ -14,6 +14,10 @@ const Product = myDatabase.define(
             type: DataTypes.STRING(150),
             allowNull: false,
         },
+        category_id: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+        },
 
         description: {
             type: DataTypes.TEXT,

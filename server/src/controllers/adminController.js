@@ -2,6 +2,8 @@ const bcrypt = require("bcrypt");
 const cloudinary = require("cloudinary");
 const User = require("../models/usersModel");
 const Product = require("../models/productsModel")
+const Category = require("../models/productCategory")
+
 
 
 
@@ -47,12 +49,21 @@ exports.uploadProduct = async (req, res) => {
         const description = req.body.description?.trim() || "";
         const price = req.body.price ? parseFloat(req.body.price) : 0;
         const stock = req.body.stock ? Math.floor(Number(req.body.stock)) : 0;
+        const category_id = req.body.category_id ? parseInt(req.body.category_id) : null;
+
+        if (category_id) {
+            const categoryExists = await Category.findByPk(category_id);
+            if (!categoryExists) {
+                return res.status(400).json({ message: "Invalid category_id" });
+            }
+        }
 
         const product = await Product.create({
             name,
             price,
             description,
             stock,
+            category_id,
             image: cloudResult.secure_url,
             public_id: cloudResult.public_id,
         });

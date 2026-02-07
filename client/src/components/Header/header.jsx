@@ -26,14 +26,14 @@ export default function HeaderSection(){
         
         <ShoppingCartIcon className='h-6 w-6 hover:text-amber-500' />
         <div className='flex gap-2'>
-          <button className="px-4 py-2 bg-green-400 hover:bg-green-600 rounded text-white">Login</button>
-          <button className="px-4 py-2 text-blue-500 rounded  hover:bg-blue-600 hover:text-white font-normal ">Sign-up</button>
+          <button className="px-4 py-2 bg-green-400 hover:bg-green-600 rounded text-white hover:font-bold">Login</button>
+          <button className="px-4 py-2 text-orange-500 rounded  hover:bg-orange-600 hover:text-white hover:font-bold font-normal ">Sign-up</button>
         </div>
         
       </div>
     </nav>
 
-        <div className="pt-16">
+        <div className="pt-20">
                 <HomeSection />
                 <ShopSection />
                 <AboutSection />
