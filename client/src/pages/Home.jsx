@@ -41,13 +41,13 @@ export default function HomeSection(){
     }
 
         return(
-            <section id="home" className="min-h-screen">
+            <section id="home" className="min-h-screen ">
                 
                 <div className="relative h-screen overflow-hidden">
                     {homeImage.map((item,index)=>(
                         <div
                         key={index}
-                        className={`absolute inset-0 h-screen bg-cover bg-center rounded-4xl transition-opacity duration-1000 ${
+                        className={`absolute inset-0 h-[95vh] bg-cover bg-center rounded-4xl transition-opacity duration-1000 ${
                             index === currentIndex ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
                         }`}
                         style={{ backgroundImage: `url(${item.imageUrl})` }}

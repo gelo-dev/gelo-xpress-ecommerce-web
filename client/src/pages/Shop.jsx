@@ -1,3 +1,5 @@
+import ImageCarousel from "../components/shopComponents/mainCarousel"
+
 export default function ShopSection(){
     return(
         <section id="shop" className="min-h-screen">
@@ -6,6 +8,10 @@ export default function ShopSection(){
                 <p className="justify-center text-xl font-light">Discover curated collections of our most-loved products,handpicked to bring you style, 
                     innovation, and everyday essentials in one seamless experience.</p>
             </div>
+            <div className="h-[250vh] rounded-2xl mt-15">
+                <ImageCarousel/>
+            </div>
+
             
         </section>
     )
