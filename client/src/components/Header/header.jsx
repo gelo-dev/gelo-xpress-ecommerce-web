@@ -21,10 +21,10 @@ export default function HeaderSection(){
               ></div>
 
               <div className="flex flex-wrap gap-6 md:gap-20 justify-center">
-                <a href="#home">Home</a>
-                <a href="#shop">Shop</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
+                <a href="#home" className='text-orange-500'>Home</a>
+                <a href="#shop" className='text-orange-500'>Shop</a>
+                <a href="#about" className='text-orange-500'>About</a>
+                <a href="#contact" className='text-orange-500'>Contact</a>
               </div>
                 <div className="flex justify-end gap-7 items-center">
                 

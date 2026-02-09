@@ -4,20 +4,20 @@ export default function HomeSection(){
 
     const homeImage = [
         {
-            imageUrl: "https://res.cloudinary.com/dl1oaa2td/image/upload/v1770413789/HomeImage1_ips3lp.jpg",
+            imageUrl: "https://res.cloudinary.com/dl1oaa2td/image/upload/v1770614561/Man_sfu2vb.png",
             bigText:"Wear the Season.",
             longText:"Designed with lightweight, breathable fabric, our summer shirts keep you cool and effortlessly stylish all day long. Made for couples who love comfort and connection, this collection lets you create memories in style."
 
         },
         {
-            imageUrl: "https://res.cloudinary.com/dl1oaa2td/image/upload/v1770442508/HomeImage3withspecs_hnazw8.png",
+            imageUrl: "https://res.cloudinary.com/dl1oaa2td/image/upload/v1770614869/32d444b0-8e9b-486d-a901-60972c92943b_u8dhvd.png",
             bigText:"Smart Living. Simplified",
             longText:"Our modern smartwatch combines sleek design with powerful features to keep you connected and in control. Track your health, manage your day, and stay ahead — all from your wrist."
 
         },
         
         {
-            imageUrl: "https://res.cloudinary.com/dl1oaa2td/image/upload/v1770406387/HomeImage2_vu07mh.jpg",
+            imageUrl: "https://res.cloudinary.com/dl1oaa2td/image/upload/v1770616047/leathershoes_rnrtcb.png",
             bigText:"Details That Define You",
             longText:"Crafted from premium materials, our classic shoes and leather belts bring timeless elegance to any outfit. Every detail is designed to elevate your confidence and complete your look with sophistication."
 
@@ -52,7 +52,7 @@ export default function HomeSection(){
                         }`}
                         style={{ backgroundImage: `url(${item.imageUrl})` }}
                         >
-                            <div className="flex flex-col gap-7">   
+                            <div className="flex flex-col gap-7 p-5">   
                                 <div className="flex flex-col h-[70vh] gap-3">
                                 <div className="mt-auto">
                                     <span className="ml-5 text-7xl text-white font-extrabold">
@@ -60,10 +60,10 @@ export default function HomeSection(){
                                     </span>
                                 
                                 </div>
-                                <div className="w-[100vh] flex">
-                                    <span className="ml-5 text-xl text-white font-light">
+                                <div className="w-[100vh] flex ">
+                                    <p className="ml-5 text-xl text-white font-light">
                                         {item.longText}
-                                    </span>
+                                    </p>
                                 </div>
                                 </div>
                                 <div className="flex w-[50vh] justify-center">
