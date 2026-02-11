@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 
-export default function ImageCarousel() {
+export default function MainCarouselSection() {
   const categoryImages = [
     {
       name: "Electronics & Gadgets",
@@ -38,6 +38,8 @@ export default function ImageCarousel() {
   const [startIndex, setStartIndex] = useState(0);
   const totalImages = categoryImages.length;
 
+
+
   const prev = () => {
     setStartIndex((prevIndex) => (prevIndex - 1 + totalImages) % totalImages);
   };
@@ -46,10 +48,29 @@ export default function ImageCarousel() {
     setStartIndex((prevIndex) => (prevIndex + 1) % totalImages);
   };
 
-  const extendedImages = [...categoryImages,...categoryImages.slice(0, 4),];
+  const slidePercentage = window.innerWidth < 768 ? 50 : 25;
+
+  const [visibleCount, setVisibleCount] = useState(4);
+
+  const extendedImages = [...categoryImages,...categoryImages.slice(0, visibleCount),];
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setVisibleCount(2); // mobile
+      } else {
+        setVisibleCount(4); // desktop
+      }
+    };
+
+    handleResize(); // run on first render
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
-      <div className="relative w-full overflow-hidden">
+      <section className="relative w-full overflow-hidden">
       
         <button
           onClick={prev}
@@ -67,11 +88,11 @@ export default function ImageCarousel() {
         <div
           className="flex transition-transform duration-500 ease-in-out"
           style={{
-            transform: `translateX(-${startIndex * 25}%)`,
+            transform: `translateX(-${startIndex * slidePercentage}%)`,
           }}
         >
           {extendedImages.map((item, index) => (
-            <div key={index} className="w-1/4 shrink-0 p-2">
+            <div key={index} className="w-1/2 md:w-1/4 shrink-0 p-2">
               <div className="flex flex-col items-center">
                 <img
                   src={item.image}
@@ -89,6 +110,6 @@ export default function ImageCarousel() {
           ))}
         </div>
 
-      </div>
+      </section>
   );
 }
