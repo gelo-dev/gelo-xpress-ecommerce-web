@@ -57,7 +57,7 @@ export default function MainCarouselSection() {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
-        setVisibleCount(2); // mobile
+        setVisibleCount(1); // mobile
       } else {
         setVisibleCount(4); // desktop
       }
