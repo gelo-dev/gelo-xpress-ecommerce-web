@@ -19,6 +19,8 @@ const slides =[
         <section className="min-h-screen ">
            <div className="grid 
                 grid-cols-1 
+                p-3
+                sm:p-0
                 sm:grid-cols-2 
                 lg:grid-cols-3 
                 gap-4">
@@ -37,7 +39,7 @@ const slides =[
                         <img
                             src={item.image}
                             alt="Product"
-                            className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                            className="w-full h-full object-cover group-hover:scale-110 transition duration-500  shadow-lg"
                         />
 
                         <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent"></div>
