@@ -20,7 +20,7 @@ export default function AboutUsSection(){
                             <span className="text-orange-400">Xpress</span>
                         </h1>
                         <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
-                            Your one-stop online shop for everything you need — from daily 
+                            Your one-stop online shop for everything you need from daily 
                             essentials and gadgets to trendy fashion and lifestyle products.
                         </p>
 

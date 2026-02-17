@@ -31,7 +31,7 @@ export default function HeaderSection(){
               <div className="hidden md:flex flex-wrap gap-6 md:gap-20 justify-center">
                 <a href="#home" className='text-orange-500'>Home</a>
                 <a href="#shop" className='text-orange-500'>Shop</a>
-                <a href="#about" className='text-orange-500'>About</a>
+                <a href="#about" className='text-orange-500'>About-Us</a>
                 <a href="#contact" className='text-orange-500'>Contact</a>
               </div>
                 <div className="hidden md:flex justify-end gap-7 items-center">

@@ -1,6 +1,7 @@
 import AboutUsSection from "../components/AboutUsComponents/aboutUs"
 import StatsSection from "../components/AboutUsComponents/statisticsSection"
 import MissionVisionSection from "../components/AboutUsComponents/missionVision"
+import RatingsSections from "../components/AboutUsComponents/ratingsSection"
 
 export default function AboutSection(){
     return(
@@ -15,6 +16,9 @@ export default function AboutSection(){
                     </div>
                     <div className="">
                         <MissionVisionSection/>
+                    </div>
+                    <div className=" hidden md:block">
+                        <RatingsSections/>
                     </div>
                     
             </div>

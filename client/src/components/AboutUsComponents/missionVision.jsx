@@ -1,6 +1,6 @@
 export default function MissionVisionSection(){
     return(
-        <section className="py-10 lg:py-30">
+        <section className="py-5 lg:py-25">
             <div className="max-w-7xl mx-auto px-6 lg:px-16 grid grid-cols-1 md:grid-cols-2 gap-10">
 
                 <div className="bg-orange-300 rounded-3xl p-8 flex flex-col items-center justify-center text-center shadow-lg hover:shadow-xl transition-shadow duration-300">

@@ -26,6 +26,10 @@ const myDatabase = require("../config/database");
             type: DataTypes.ENUM("user", "admin"),
             defaultValue: "user",
         },
+            image: {
+            type: DataTypes.STRING(255),
+            allowNull: true,
+        },
             created_at: {
             type: DataTypes.DATE,
             defaultValue: DataTypes.NOW,

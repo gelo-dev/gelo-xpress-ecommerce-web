@@ -3,7 +3,7 @@ import DealsAndPromoSection from "../components/shopComponents/dealsAndPromos"
 
 export default function ShopSection(){
     return(
-        <section id="shop" className="h-[345vh] md:h-[230vh]">
+        <section id="shop" className="h-[325vh] md:h-[230vh]">
             <div className="flex flex-col justify-center items-center gap-4">
                 <h1 className="flex text-center text-5xl md:text-7xl font-extrabold mt-5 text-orange-300">Your Favorites, All in One Place</h1>
                 <p className=" text-center text-lg md:text-2xl font-light">
