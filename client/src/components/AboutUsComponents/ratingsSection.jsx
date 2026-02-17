@@ -1,88 +1,103 @@
-import { useEffect, useState,  } from "react";
 import ratings from "./JavaScript/ratings"
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+import { useRef } from "react";
+import { ChevronLeftIcon, ChevronRightIcon ,StarIcon  } from "@heroicons/react/24/solid";
 
-export default function RatingsSections(){
 
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [itemsToShow, setItemsToShow] = useState(4);
 
-useEffect(() => {
-    const updateItems = () => {
-        if (window.innerWidth < 640) {
-        setItemsToShow(1); // mobile
-        } else if (window.innerWidth < 1024) {
-        setItemsToShow(2); // tablet
-        } else {
-        setItemsToShow(4); // desktop
-        }
-    };
+export default function RatingsSection(){
 
-    updateItems();
-    window.addEventListener("resize", updateItems);
-    return () => window.removeEventListener("resize", updateItems);
-}, []);
+const ratingCardStyle = "min-w-[360px] rounded-2xl flex justify-center items-center ";
+const scrollRef = useRef(null);
 
-    const handleNext = () => {
-    if (currentIndex < ratings.length - itemsToShow) {
-        setCurrentIndex(currentIndex + 1);
+const scroll = (direction) => {
+    if (scrollRef.current) {
+    scrollRef.current.scrollBy({
+        left: direction === "left" ? -400 : 400,
+        behavior: "smooth",
+    });
     }
-    };
+};
 
-    const handlePrev = () => {
-    if (currentIndex > 0) {
-        setCurrentIndex(currentIndex - 1);
-    }
-    };
+const getInitials= (name) =>{
+    if (!name) return "";
+    const words = name.trim().split(" ");
+    // Take first letter of first and last word
+    const initials =
+        words.length === 1
+        ? words[0][0]
+        : words[0][0] + words[words.length - 1][0];
+    return initials.toUpperCase();
+}
 
 
     return(
-        <section className="h-[70vh] relative ">
+        <section className="h-[60vh] md:h-[75vh] relative">
             <div className="flex flex-col gap-5">
                 <h2 className="text-3xl md:text-7xl mb-3 font-bold text-center text-orange-300">
                     Loved by Our Customers
                 </h2>
                 <p className=" text-center text-lg md:text-2xl font-light">See why shoppers keep coming back.</p>
-                
-            </div>
 
                 <button
-                    onClick={handlePrev}
-                    className="absolute left-5 top-1/2 z-10 bg-white shadow-md rounded-full p-2"
+                    onClick={() => scroll("left")}
+                    className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10
+                    bg-white shadow-md p-2 rounded-full"
                 >
-                    <ChevronLeftIcon className="h-6 w-6" />
+                    <ChevronLeftIcon className="w-6 h-6 text-gray-700" />
                 </button>
                 <button
-                                onClick={handleNext}
-                                className="absolute right-5 top-1/2 z-10 bg-white shadow-md rounded-full p-2"
-                            >
-                                <ChevronRightIcon className="h-6 w-6" />
+                    onClick={() => scroll("right")}
+                    className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10
+                            bg-white shadow-md p-2 rounded-full"
+                >
+                    <ChevronRightIcon className="w-6 h-6 text-gray-700" />
                 </button>
-
-                <div className="overflow-hidden   px-10 mt-5 ">
+                
+                
                     <div
-                    className="flex transition-transform duration-500 ease-in-out "
-                    style={{
-                       transform: `translateX(-${currentIndex * (100 / itemsToShow)}%)`,
-                    }}
-                    >
-                    {ratings.map((item, index) => (
-                        <div
-                        key={index}
-                        className="shrink-0 w-1/4 p-2 mt-4"
-                        >
-                        <div className="h-50 bg-amber-200 rounded-2xl flex items-center justify-center">
-                            {item.name}
-                        </div>
-                        </div>
-                    ))}
+                    ref={scrollRef} 
+                    className="flex gap-8  h-50 md:h-65 w-screen  overflow-x-auto p-2 no-scrollbar scroll-smooth ">
+                        {ratings.map((item,index)=>(
+                                <div
+                                key={index} 
+                                className={ratingCardStyle}>
+                                    <div className="flex flex-col  h-50 gap-2 md:gap-5 p-5 justify-center shadow-lg rounded-2xl border border-gray-50">
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center  font-semibold drop-shadow-md">
+                                            {getInitials(item.name)}
+                                            </div>
+                                            <span className="font-bold font-serif text-orange-300 text-lg">{item.name}</span>
+                                        </div>
+
+                                        <div className="flex flex-col gap-1">
+                                                <div className="flex flex-col justify-center items-center">
+                                                    <span>{item.suggestion}</span> 
+                                                </div>
+                                                <div>
+                                                    <span className="text-center block">{item.comment}</span>
+                                                </div>
+                                                <div className="flex gap-2 justify-center">
+                                                    {[1, 2, 3, 4, 5].map((star) => (
+                                                        <StarIcon
+                                                        key={star}
+                                                        className={`w-5 h-5 ${
+                                                            star <= item.rating ? "text-yellow-400" : "text-gray-300"
+                                                        }`}
+                                                        />
+                                                    ))}
+                                                </div>
+                                        </div>
+
+                                        
+                                        
+
+                                    </div>
+
+                                </div>
+                        ))}
+                        
                     </div>
-                </div>
-
-             
-
-               
-
+            </div>
         </section>
     )
 }

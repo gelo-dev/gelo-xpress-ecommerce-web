@@ -17,7 +17,7 @@ export default function AboutSection(){
                     <div className="">
                         <MissionVisionSection/>
                     </div>
-                    <div className=" hidden md:block">
+                    <div >
                         <RatingsSections/>
                     </div>
                     
