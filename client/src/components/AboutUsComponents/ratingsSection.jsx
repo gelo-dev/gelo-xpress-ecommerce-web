@@ -61,20 +61,31 @@ const getInitials= (name) =>{
                                 <div
                                 key={index} 
                                 className={ratingCardStyle}>
-                                    <div className="flex flex-col  h-50 gap-2 md:gap-5 p-5 justify-center shadow-lg rounded-2xl border border-gray-50">
+                                    <div className="flex flex-col  h-50 gap-2 md:gap-4 p-5 
+                                    justify-center shadow-lg bg-gray-100 
+                                    rounded-2xl border border-gray-100 md:border-gray-50">
                                         <div className="flex items-center gap-4">
-                                            <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center  font-semibold drop-shadow-md">
-                                            {getInitials(item.name)}
+                                            <div className="w-12 h-12 rounded-full overflow-hidden bg-orange-300 text-white flex items-center justify-center font-semibold drop-shadow-md">
+                                                {item.image ? (
+                                                    <img
+                                                    src={item.image}
+                                                    alt={item.name}
+                                                    className="w-full h-full object-cover"
+                                                    />
+                                                ) : (
+                                                    getInitials(item.name)
+                                                )}
                                             </div>
+
                                             <span className="font-bold font-serif text-orange-300 text-lg">{item.name}</span>
                                         </div>
 
                                         <div className="flex flex-col gap-1">
                                                 <div className="flex flex-col justify-center items-center">
-                                                    <span>{item.suggestion}</span> 
+                                                    <span className="text-blue-800 font-sans">{item.suggestion}</span> 
                                                 </div>
                                                 <div>
-                                                    <span className="text-center block">{item.comment}</span>
+                                                    <span className="text-center block font-light">{'"' +item.comment+'"'}</span>
                                                 </div>
                                                 <div className="flex gap-2 justify-center">
                                                     {[1, 2, 3, 4, 5].map((star) => (
