@@ -31,7 +31,7 @@ const getInitials= (name) =>{
 
 
     return(
-        <section className="h-[60vh] md:h-[75vh] relative">
+        <section className="h-[60vh] md:h-[70vh] relative">
             <div className="flex flex-col gap-5">
                 <h2 className="text-3xl md:text-7xl mb-3 font-bold text-center text-orange-300">
                     Loved by Our Customers
