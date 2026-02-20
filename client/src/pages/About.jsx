@@ -17,7 +17,7 @@ export default function AboutSection(){
                     <div className="">
                         <MissionVisionSection/>
                     </div>
-                    <div >
+                    <div className=" w-full  overflow-hidden" >
                         <RatingsSections/>
                     </div>
                     

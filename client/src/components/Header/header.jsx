@@ -7,6 +7,8 @@ import {
   UserIcon
 } from '@heroicons/react/24/outline'
 
+
+import FooterSection from '../Footer/footerSection';
 import ProfileButtonSection from './userProfile/userProfile';
 import HomeSection from "../../pages/Home";
 import ShopSection from "../../pages/Shop";
@@ -47,9 +49,12 @@ export default function HeaderSection(){
                     <ShopSection />
                     <AboutSection />
                     <ContactSection />
+                    
             </div>
-  
+                <FooterSection/>
           </div>
+
+
 
     
             <div className="fixed bottom-0 left-0 w-full h-16 bg-white border-t

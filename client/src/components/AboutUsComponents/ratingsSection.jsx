@@ -10,12 +10,15 @@ const ratingCardStyle = "min-w-[360px] rounded-2xl flex justify-center items-cen
 const scrollRef = useRef(null);
 
 const scroll = (direction) => {
-    if (scrollRef.current) {
-    scrollRef.current.scrollBy({
-        left: direction === "left" ? -400 : 400,
-        behavior: "smooth",
-    });
-    }
+  if (!scrollRef.current) return;
+
+  const container = scrollRef.current;
+  const scrollAmount = container.clientWidth;
+
+  container.scrollBy({
+    left: direction === "left" ? -scrollAmount : scrollAmount,
+    behavior: "smooth",
+  });
 };
 
 const getInitials= (name) =>{
@@ -56,12 +59,12 @@ const getInitials= (name) =>{
                 
                     <div
                     ref={scrollRef} 
-                    className="flex gap-8  h-50 md:h-65 w-screen  overflow-x-auto p-2 no-scrollbar scroll-smooth ">
+                    className="flex gap-8  h-50 md:h-65 w-full overflow-x-auto p-2 no-scrollbar scroll-smooth ">
                         {ratings.map((item,index)=>(
                                 <div
                                 key={index} 
                                 className={ratingCardStyle}>
-                                    <div className="flex flex-col  h-50 gap-2 md:gap-4 p-5 
+                                    <div className="flex flex-col  h-50 gap-2 md:gap-2 p-5 
                                     justify-center shadow-lg bg-gray-100 
                                     rounded-2xl border border-gray-100 md:border-gray-50">
                                         <div className="flex items-center gap-4">
