@@ -1,16 +1,39 @@
 import { useState } from "react";
+import axiosInstance from "../../api/api";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 
-export default function LoginSection( {changeSignUpForm}) {
+export default function LoginSection( {changeSignUpForm , onLoginSuccess }) {
 const [showPassword, setShowPassword] = useState(false);
  const [email, setEmail] = useState("");           // <-- added
   const [password, setPassword] = useState(""); 
 
-const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Email",email)
-    console.log("Password" ,password)
-    console.log("Login submitted");
+        try {
+            const response = await axiosInstance.post('/login', {
+                email,
+                password
+            });
+
+            // console.log("Login successful:", response.data);
+             const { token, user } = response.data;
+            localStorage.setItem("token", token);
+
+            // // store user info safely
+            localStorage.setItem("loggedInUser", JSON.stringify(user));
+            console.log("Login successful:", user);
+             if (onLoginSuccess) {
+            onLoginSuccess(user);
+            }
+             
+
+
+        } catch (error) {
+            console.error(
+                "Login failed:",
+                error.response?.data || error.message
+            );
+        }
 };
 
     return (

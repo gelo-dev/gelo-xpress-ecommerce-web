@@ -49,7 +49,8 @@ exports.login = async(req,res)=>{
         const user = await User.findOne({where : {email}});
 
         if(!user){
-            return res.status(404).json({message : "User Not Found"});
+            return res.status(404).json({message : "User Not Found in data"});
+            
         }
 
         const userExist = await bcrypt.compare(password ,user.password);
@@ -67,8 +68,15 @@ exports.login = async(req,res)=>{
                 expiresIn : process.env.JWT_EXPIRES_IN
             }
         )
+        console.log('Login Works')
 
-        res.json({message : "Log-in Successully", token});
+        res.json({message : "Log-in Successully", token,
+            user: {
+            id: user.id,
+            full_name: user.full_name,
+            email: user.email,
+            role: user.role 
+        }});
     
     } catch (error) {
         res.status(500).json({error : error.message});

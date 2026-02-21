@@ -19,8 +19,8 @@ router.get('/test-image' , CloudinarController.UploadInCloudinary)
 
 
 router.post("/create-admin" , AuthToken.verifyTokens, AdminAuth.isAdmin , AdminRegistration.createAdmin)
-router.post('/auth/register' , UserAuth.register)
-router.post('/auth/login' , UserAuth.login)
+router.post('/register' , UserAuth.register)
+router.post('/login' , UserAuth.login)
 router.post("/upload-product",AuthToken.verifyTokens,AdminAuth.isAdmin,Upload.single("image"),AdminRegistration.uploadProduct);
 
 // router.post('/register')
