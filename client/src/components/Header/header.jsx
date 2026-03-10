@@ -6,6 +6,7 @@ import {
   ShoppingCartIcon,
   UserIcon
 } from '@heroicons/react/24/outline'
+import Reveal from '../animations/revealAnimation';
 
 
 import FooterSection from '../Footer/footerSection';
@@ -23,29 +24,54 @@ export default function HeaderSection(){
                 px-16 bg-white
                 grid-cols- md:grid-cols-3 items-center
                 z-50">
-              <div
+              <Reveal delay={0.2}>
+                <div
                 className="h-15 w-55 md:w-40 bg-no-repeat bg-contain bg-center"
                 style={{
                 backgroundImage: `url("https://res.cloudinary.com/dl1oaa2td/image/upload/v1770411099/GeloExpressLogo_cktzjw.png")`
                 }}
               ></div>
+              </Reveal>    
+              
 
               <div className="hidden md:flex flex-wrap gap-6 md:gap-20 justify-center">
-                <a href="#home" className='text-orange-500'>Home</a>
-                <a href="#shop" className='text-orange-500'>Shop</a>
-                <a href="#about" className='text-orange-500'>About-Us</a>
-                <a href="#contact" className='text-orange-500'>Contact</a>
+                <Reveal delay={0.3}>
+                  <a href="#home" className='text-orange-500'>Home</a>
+                </Reveal>
+                <Reveal delay={0.4}>
+                  <a href="#shop" className='text-orange-500'>Shop</a>
+                </Reveal>
+                <Reveal delay={0.5}>
+                  <a href="#about" className='text-orange-500'>About-Us</a>
+                </Reveal>
+                <Reveal delay={0.6}>
+                  <a href="#contact" className='text-orange-500'>Contact</a>
+                </Reveal>
+                
+                
+                
+                
               </div>
                 <div className="hidden md:flex justify-end gap-7 items-center">
+                  <Reveal delay={0.7}>
+                    <ShoppingCartIcon className='h-6 w-6 hover:text-amber-500' />
+                  </Reveal>
+                  <Reveal delay={0.8}>
+                    <ProfileButtonSection/>
+                  </Reveal>
                 
-                <ShoppingCartIcon className='h-6 w-6 hover:text-amber-500' />
-                <ProfileButtonSection/>
+               
+                
                 
               </div>
             </nav>
 
             <div className="pt-5 md:pt-25">
-                    <HomeSection />
+              <Reveal delay={0.4}>
+                  <HomeSection />
+              </Reveal>
+              
+                    
                     <ShopSection />
                     <AboutSection />
                     <ContactSection />

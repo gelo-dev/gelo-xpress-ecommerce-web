@@ -1,4 +1,5 @@
 import { useEffect,useState } from "react"
+import Reveal from "../components/animations/revealAnimation";
 
 export default function HomeSection(){
 
@@ -52,9 +53,11 @@ export default function HomeSection(){
                         }`}
                         style={{ backgroundImage: `url(${item.imageUrl})` }}
                         >
-                            <div className="flex flex-col gap-7 p-5">   
-                                <div className="flex flex-col h-[70vh] gap-3">
+                            <div className="flex flex-col gap-7 p-5"> 
+                                <Reveal delay={0.2}>
+                                    <div className="flex flex-col h-[70vh] gap-3">
                                 <div className="mt-auto">
+                                    
                                     <span className="justify-center md:ml-5 text-6xl md:text-7xl text-white font-extrabold">
                                     {item.bigText}
                                     </span>
@@ -66,14 +69,19 @@ export default function HomeSection(){
                                     </p>
                                 </div>
                                 </div>
+                                </Reveal>  
+                                
                                 <div className="flex w-[20vh] justify-center">
-                                    <button
+                                    <Reveal delay={0.3}>
+                                        <button
                                         onClick={()=>test()}
                                         className="h-12 w-32 bg-orange-400 hover:bg-orange-700
                                                 text-white font-semibold rounded-full 
                                                 shadow-md transition duration-300 ease-in-out">
                                         Shop Now
                                     </button>
+                                    </Reveal>
+                                    
                                 </div>
 
                             </div>

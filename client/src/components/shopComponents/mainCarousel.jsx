@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+import Reveal from "../animations/revealAnimation";
 
 export default function MainCarouselSection() {
   const categoryImages = [
@@ -93,19 +94,20 @@ export default function MainCarouselSection() {
         >
           {extendedImages.map((item, index) => (
             <div key={index} className="w-1/2 md:w-1/4 shrink-0 p-2">
-              <div className="flex flex-col items-center">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="h-[60vh] w-full object-cover rounded-2xl hover:scale-95"
-                />
-        
-                <p className="mt-4 text-base font-medium tracking-wide text-orange-500 text-center">
-                  {item.name}
-                </p>
+              <Reveal delay={index * 0.1}>
+                    <div className="flex flex-col items-center">
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="h-[60vh] w-full object-cover rounded-2xl hover:scale-95"
+                        />
+                
+                        <p className="mt-4 text-base font-medium tracking-wide text-orange-500 text-center">
+                          {item.name}
+                        </p>
+                    </div>
+              </Reveal>
 
-
-              </div>
             </div>
           ))}
         </div>

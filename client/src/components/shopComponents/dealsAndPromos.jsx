@@ -1,3 +1,5 @@
+import Reveal from "../animations/revealAnimation"
+
 export default function DealsAndPromoSection(){
 
 const slides =[
@@ -26,38 +28,48 @@ const slides =[
                 gap-4">
 
                 {slides.map((item,index) => (
-                    <div
-                    key={index}
-                    className="relative 
-                                h-[60vh] 
-                                sm:h-[70vh] 
-                                lg:h-[90vh] 
-                                rounded-2xl 
-                                overflow-hidden 
-                                group"
-                    >
-                        <img
-                            src={item.image}
-                            alt="Product"
-                            className="w-full h-full object-cover group-hover:scale-110 transition duration-500  shadow-lg"
-                        />
+                    <Reveal delay={index * 0.2}>
+                        <div
+                        key={index}
+                        className="relative 
+                                    h-[60vh] 
+                                    sm:h-[70vh] 
+                                    lg:h-[90vh] 
+                                    rounded-2xl 
+                                    overflow-hidden 
+                                    group"
+                        >
+                            
+                                    <img
+                                src={item.image}
+                                alt="Product"
+                                className="w-full h-full object-cover group-hover:scale-110 transition duration-500  shadow-lg"
+                            />
 
-                        <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent"></div>
-
-                        <div className="flex flex-col gap-3 absolute bottom-5 left-5 text-white">
-                            <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold">
-                            {item.bigText}
-                            </h2>
-
-                            <button
-                            className="h-9 sm:h-10 px-5 
-                                        bg-orange-400 hover:bg-orange-600
-                                        text-white rounded-full 
-                                        shadow-md transition duration-300">
-                            Shop Now
-                            </button>
+                            <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent"></div>
+                        
+                            <div className="flex flex-col gap-3 absolute bottom-5 left-5 text-white">
+                                <Reveal>
+                                    <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold">
+                                        {item.bigText}
+                                    </h2>
+                                </Reveal>
+                                
+                                <Reveal delay={0.1}>
+                                    <button
+                                    className="h-9 sm:h-10 px-5 
+                                                bg-orange-400 hover:bg-orange-600
+                                                text-white rounded-full 
+                                                shadow-md transition duration-300">
+                                        Shop Now
+                                    </button>
+                                </Reveal>
+                                
+                            </div>
+                        
+                            
                         </div>
-                    </div>
+                     </Reveal>
                 ))}
 
                 </div>
