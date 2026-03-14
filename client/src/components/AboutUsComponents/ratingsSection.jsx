@@ -1,6 +1,7 @@
 import ratings from "./JavaScript/ratings"
 import { useRef } from "react";
 import { ChevronLeftIcon, ChevronRightIcon ,StarIcon  } from "@heroicons/react/24/solid";
+import Reveal from "../animations/revealAnimation"
 
 
 
@@ -36,10 +37,16 @@ const getInitials= (name) =>{
     return(
         <section className="h-[60vh] md:h-[70vh] relative">
             <div className="flex flex-col gap-5">
-                <h2 className="text-3xl md:text-7xl mb-3 font-bold text-center text-orange-300">
-                    Loved by Our Customers
-                </h2>
-                <p className=" text-center text-lg md:text-2xl font-light">See why shoppers keep coming back.</p>
+                <Reveal>
+                        <h2 className="text-3xl md:text-7xl mb-3 font-bold text-center text-orange-300">
+                            Loved by Our Customers
+                        </h2>
+                </Reveal>
+                
+                <Reveal delay={0.2}>
+                    <p className=" text-center text-lg md:text-2xl font-light">See why shoppers keep coming back.</p>
+                </Reveal>
+                
 
                 <button
                     onClick={() => scroll("left")}
@@ -61,10 +68,12 @@ const getInitials= (name) =>{
                     ref={scrollRef} 
                     className="flex gap-8  h-50 md:h-65 w-full overflow-x-auto p-2 no-scrollbar scroll-smooth ">
                         {ratings.map((item,index)=>(
+
                                 <div
                                 key={index} 
                                 className={ratingCardStyle}>
-                                    <div className="flex flex-col  h-50 gap-2 md:gap-2 p-5 
+                                    <Reveal delay={index * 0.1}>
+                                        <div className="flex flex-col  h-50 gap-2 md:gap-2 p-5 
                                     justify-center shadow-lg bg-gray-100 
                                     rounded-2xl border border-gray-100 md:border-gray-50">
                                         <div className="flex items-center gap-4">
@@ -105,7 +114,9 @@ const getInitials= (name) =>{
                                         
                                         
 
-                                    </div>
+                                        </div>
+                                    </Reveal>
+                                    
 
                                 </div>
                         ))}

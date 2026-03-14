@@ -77,7 +77,10 @@ export default function HeaderSection(){
                     <ContactSection />
                     
             </div>
-                <FooterSection/>
+                <Reveal>
+                  <FooterSection/>
+                </Reveal>
+                
           </div>
 
 
